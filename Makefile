@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/24 16:32:28 by jbrousse          #+#    #+#              #
-#    Updated: 2024/01/24 17:54:03 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/01/24 18:06:43 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,7 +114,7 @@ so:
 
 norme:
 	@echo "$(COLOR_BLUE)Norminette...$(COLOR_RESET)"
-	@norminette $(SRC) $(INCLUDES) > norme_log ; \
+	@norminette $(SRC_DIR) $(INCLUDES) > norme_log ; \
 	if grep -q "Error" norme_log; then \
 		echo "$(COLOR_RED)Norme : KO!$(COLOR_RESET)"; \
 	else \

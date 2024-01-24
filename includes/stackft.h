@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack.h                                         :+:      :+:    :+:   */
+/*   stackft.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:35:58 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/01/24 17:45:04 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:04:39 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STACK_H
-# define FT_STACK_H
+#ifndef STACKFT_H
+# define STACKFT_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -33,4 +33,4 @@ int		s_pop_stk(t_sstack *stack);
 void	s_push_stk(t_sstack *stack, int value);
 void	s_update_at_stk(t_sstack *stack, int index, int value);
 
-#endif //FT_STACK_H
+#endif //STACKFT_H

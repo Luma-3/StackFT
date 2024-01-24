@@ -6,11 +6,11 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:08:14 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/01/24 17:22:56 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:05:57 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stack.h"
+#include "stackft.h"
 
 int	s_pop_stk(t_sstack *stack)
 {

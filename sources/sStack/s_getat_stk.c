@@ -6,11 +6,11 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:25:40 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/01/24 17:30:58 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:05:46 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stack.h"
+#include "stackft.h"
 
 int	s_getat_stk(t_sstack *stack, int index)
 {

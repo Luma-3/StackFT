@@ -6,11 +6,11 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:53:18 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/01/24 17:16:33 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:05:59 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stack.h"
+#include "stackft.h"
 
 void	s_push_stk(t_sstack *stack, int value)
 {

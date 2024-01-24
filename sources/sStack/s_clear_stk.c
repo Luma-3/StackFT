@@ -6,11 +6,11 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:35:41 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/01/24 17:37:54 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:05:39 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stack.h"
+#include "stackft.h"
 
 void	s_clear_stk(t_sstack *stack)
 {
