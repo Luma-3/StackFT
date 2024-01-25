@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/24 16:32:28 by jbrousse          #+#    #+#              #
-#    Updated: 2024/01/24 18:06:43 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/01/25 17:03:31 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CFLAGS	=	-g3 -Wall -Werror -Wextra -I
 
 SRC_DIR			=	sources/
 
-SRC_SSTACK_DIR	=	sStack/
+SRC_SSTACK_DIR	=	sstack/
 SRC_SSTACK_LIST	=	s_clear_stk.c		\
 					s_getat_stk.c		\
 					s_init_stk.c		\
@@ -32,8 +32,11 @@ SRC_SSTACK_LIST	=	s_clear_stk.c		\
 					s_len_stk.c			\
 					s_pop_stk.c			\
 					s_push_stk.c		\
-					s_update_at_stk.c	\
-SRC_SSTACK		=	$(addprefix $(SRC_DIR), $(SRC_SSTACK_DIR))
+					s_rollup_stk.c		\
+					s_rolldown_stk.c	\
+					s_swap_stk.c		\
+					s_update_at_stk.c
+SRC_SSTACK		=	$(addprefix $(SRC_SSTACK_DIR), $(SRC_SSTACK_LIST))
 
 SRC_LIST		=	$(SRC_SSTACK)
 SRC				=	$(addprefix $(SRC_DIR), $(SRC_LIST))
@@ -48,7 +51,7 @@ INCLUDES	=	includes/
 ##	OBJ/NAME  ##
 ################
 
-NAME		=	StackFT.a
+NAME		=	stackft.a
 
 OBJ_DIR		=	obj/
 OBJ			=	$(addprefix $(OBJ_DIR), $(SRC_LIST:.c=.o))
@@ -85,6 +88,7 @@ all: $(NAME)
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)$(SRC_SSTACK_DIR)
 
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c $(OBJ_DIR)
@@ -102,15 +106,11 @@ clean:
 	@rm -f norme_log
 	@echo "$(COLOR_GREEN)Remove Object complete !$(COLOR_RESET)"
 
-fclean: clean cleanso 
+fclean: clean
 	@rm -f $(NAME)
-	@echo "$(COLOR_GREEN)Remove libft complete !$(COLOR_RESET)"
+	@echo "$(COLOR_GREEN)Remove StackFT complete !$(COLOR_RESET)"
 
 re: fclean all
-
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
-	gcc -nostartfiles -shared -o libft.so $(OBJ)
 
 norme:
 	@echo "$(COLOR_BLUE)Norminette...$(COLOR_RESET)"
@@ -120,8 +120,5 @@ norme:
 	else \
 		echo "$(COLOR_GREEN)Norme : OK!$(COLOR_RESET)"; \
 	fi; \
-	
-cleanso:
-	@rm -f libft.so
 
 .PHONY: all clean fclean re
