@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:08:14 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/01/26 15:56:09 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/01/26 23:31:30 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int	s_pop_stk(t_sstack *stack)
 		stack->data[i] = stack->data[i + 1];
 		i++;
 	}
+	stack->base--;
 	return (popped_value);
 }
