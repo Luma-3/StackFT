@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/24 16:32:28 by jbrousse          #+#    #+#              #
-#    Updated: 2024/01/25 17:03:31 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/01/26 15:58:07 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ SRC_DIR			=	sources/
 
 SRC_SSTACK_DIR	=	sstack/
 SRC_SSTACK_LIST	=	s_clear_stk.c		\
-					s_getat_stk.c		\
 					s_init_stk.c		\
 					s_isempty_stk.c		\
 					s_isfull_stk.c		\
@@ -34,8 +33,7 @@ SRC_SSTACK_LIST	=	s_clear_stk.c		\
 					s_push_stk.c		\
 					s_rollup_stk.c		\
 					s_rolldown_stk.c	\
-					s_swap_stk.c		\
-					s_update_at_stk.c
+					s_swap_stk.c
 SRC_SSTACK		=	$(addprefix $(SRC_SSTACK_DIR), $(SRC_SSTACK_LIST))
 
 SRC_LIST		=	$(SRC_SSTACK)

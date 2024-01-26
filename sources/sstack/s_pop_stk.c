@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:08:14 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/01/24 18:05:57 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:56:09 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,20 @@
 
 int	s_pop_stk(t_sstack *stack)
 {
-	if (!s_isempty_stk(stack))
-		return (stack->data[stack->top--]);
-	else
+	int	i;
+	int	popped_value;
+
+	if (s_isempty_stk(stack))
 	{
 		write(2, "Error : stack is EMPTY !", 25);
 		return (-1);
 	}
+	i = 0;
+	popped_value = stack->data[0];
+	while (i < stack->base)
+	{
+		stack->data[i] = stack->data[i + 1];
+		i++;
+	}
+	return (popped_value);
 }

@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:32:00 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/01/24 18:05:55 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:56:09 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 size_t	s_len_stk(t_sstack *stack)
 {
-	return (stack->top + 1);
+	return (stack->base + 1);
 }

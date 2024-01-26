@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:53:34 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/01/25 16:49:06 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:58:58 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	s_rollup_stk(t_sstack *stk)
 
 	if (s_isempty_stk(stk))
 		return ;
-	i = stk->top;
-	tmp = stk->data[stk->top];
-	while (i > 0)
+	tmp = stk->data[0];
+	i = 0;
+	while (i < stk->base)
 	{
-		stk->data[i] = stk->data[i - 1];
-		i--;
+		stk->data[i] = stk->data[i + 1];
+		i++;
 	}
-	stk->data[0] = tmp;
+	stk->data[stk->base] = tmp;
 }

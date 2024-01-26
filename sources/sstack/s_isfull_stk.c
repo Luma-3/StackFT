@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:59:39 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/01/24 18:05:53 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:56:09 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	s_isfull_stk(t_sstack *stack)
 {
-	return (stack->top == stack->size - 1);
+	return (stack->base == stack->size - 1);
 }
