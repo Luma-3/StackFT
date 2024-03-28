@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_rollup_stk.c                                     :+:      :+:    :+:   */
+/*   d_clear_stk.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 15:53:34 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/03/28 18:38:54 by jbrousse         ###   ########.fr       */
+/*   Created: 2024/03/28 17:59:26 by jbrousse          #+#    #+#             */
+/*   Updated: 2024/03/28 19:01:35 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stackft.h"
 
-void	s_rollup_stk(t_sstack *stk)
+void	d_clear_stk(t_dstack *stack, void (*del)(void *))
 {
-	int	i;
-	int	tmp;
+	t_dnode	*tmp1;
+	t_dnode	*tmp2;
 
-	if (s_isempty_stk(stk))
-		return ;
-	tmp = stk->data[0];
-	i = 0;
-	while (i < stk->base)
+	tmp1 = stack->top;
+	tmp2 = stack->top->next;
+	while (tmp1->data != NULL)
 	{
-		stk->data[i] = stk->data[i + 1];
-		i++;
+		del(tmp1->data);
+		free(tmp1);
+		tmp1 = tmp2;
 	}
-	stk->data[stk->base] = tmp;
+	stack->size = 0;
+	stack->top = NULL;
 }

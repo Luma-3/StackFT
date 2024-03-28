@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/24 16:32:28 by jbrousse          #+#    #+#              #
-#    Updated: 2024/01/26 15:58:07 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/03/28 18:54:10 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,16 @@ SRC_SSTACK_LIST	=	s_clear_stk.c		\
 					s_swap_stk.c
 SRC_SSTACK		=	$(addprefix $(SRC_SSTACK_DIR), $(SRC_SSTACK_LIST))
 
-SRC_LIST		=	$(SRC_SSTACK)
+SRC_DSTACK_DIR	=	dstack/
+SRC_DSTACK_LIST	=	d_clear_stk.c		\
+					d_init_stk.c		\
+					d_isempty_stk.c		\
+					d_pop_stk.c			\
+					d_push_stk.c		\
+					d_swap_stk.c
+SRC_DSTACK		=	$(addprefix $(SRC_DSTACK_DIR), $(SRC_DSTACK_LIST))
+SRC_LIST		=	$(SRC_SSTACK) \
+					$(SRC_DSTACK)
 SRC				=	$(addprefix $(SRC_DIR), $(SRC_LIST))
 
 ################
@@ -87,6 +96,7 @@ all: $(NAME)
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(OBJ_DIR)$(SRC_SSTACK_DIR)
+	@mkdir -p $(OBJ_DIR)$(SRC_DSTACK_DIR)
 
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c $(OBJ_DIR)

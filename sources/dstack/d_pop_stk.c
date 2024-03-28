@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_rollup_stk.c                                     :+:      :+:    :+:   */
+/*   d_pop_stk.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 15:53:34 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/03/28 18:38:54 by jbrousse         ###   ########.fr       */
+/*   Created: 2024/03/28 17:34:37 by jbrousse          #+#    #+#             */
+/*   Updated: 2024/03/28 18:39:28 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stackft.h"
 
-void	s_rollup_stk(t_sstack *stk)
+void	*d_pop_stck(t_dstack *stack)
 {
-	int	i;
-	int	tmp;
+	void	*data;
+	t_dnode	*tmp;
 
-	if (s_isempty_stk(stk))
-		return ;
-	tmp = stk->data[0];
-	i = 0;
-	while (i < stk->base)
-	{
-		stk->data[i] = stk->data[i + 1];
-		i++;
-	}
-	stk->data[stk->base] = tmp;
+	data = stack->top->data;
+	tmp = stack->top->next;
+	free(stack->top);
+	stack->top = tmp;
+	stack->size--;
+	return (data);
 }
