@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/24 16:32:28 by jbrousse          #+#    #+#              #
-#    Updated: 2024/03/28 18:54:10 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/03/30 17:09:56 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC_SSTACK		=	$(addprefix $(SRC_SSTACK_DIR), $(SRC_SSTACK_LIST))
 
 SRC_DSTACK_DIR	=	dstack/
 SRC_DSTACK_LIST	=	d_clear_stk.c		\
+					d_drop_stk.c		\
 					d_init_stk.c		\
 					d_isempty_stk.c		\
 					d_pop_stk.c			\

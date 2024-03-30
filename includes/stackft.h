@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:35:58 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/03/28 18:55:12 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/03/30 17:09:09 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void		s_swap_stk(t_sstack *stk);
 //////////////////////////////
 
 void		d_clear_stk(t_dstack *stack, void (*del)(void *));
+void		d_drop_stk(t_dstack *stack, void (*del)(void *));
 void		d_drop_stk(t_dstack *stack, void (*del)(void *));
 t_dstack	*d_init_stk(void);
 int			d_isempty_stk(t_dstack *stack);
