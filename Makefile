@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/24 16:32:28 by jbrousse          #+#    #+#              #
-#    Updated: 2024/03/30 17:09:56 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/04/02 19:30:40 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@
 ## 	COMPILE	 ##
 ###############
 
-CC		=	gcc
-CFLAGS	=	-g3 -Wall -Werror -Wextra -I
+CC		=	cc
+CFLAGS	=	-Wall -Werror -Wextra -I
 
 ##############
 ##  SOURCE	##
@@ -64,29 +64,37 @@ NAME		=	stackft.a
 OBJ_DIR		=	obj/
 OBJ			=	$(addprefix $(OBJ_DIR), $(SRC_LIST:.c=.o))
 
+#################
+##	 COLORS	   ##
+#################
+
+COLOR_RESET		=	\033[0m
+COLOR_GREEN		=	\033[38;5;76m
+COLOR_RED		=	\033[38;5;160m
+COLOR_BLUE		=	\033[38;5;45m
+COLOR_ORANGE	=	\033[38;5;220m
+BOLD			=	\033[1m
+UNDERLINE		=	\033[4m
+
 ################
 ##	PROGRESS  ##
 ################
 
 TOTAL_SRCS		=	$(words $(SRC))
-COMPILED_SRCS	=	0
+COMPILED_SRCS	:=	0
 
 define print_progress
-	@echo -n "$(COLOR_BLUE)Compiling: [$(COLOR_GREEN)"
+	@printf "\033[2K"
+	@printf "$(COLOR_BLUE)Compiling: [$(COLOR_GREEN)"
 	@for i in $(shell seq 1 25); do \
-		[ $$i -le $$(($(1)*25/$(2))) ] && echo -n "#" || echo -n "."; \
+		if [ $$i -le $$(($(1)*25/$(2))) ]; then \
+			printf "#"; \
+		else \
+			printf "."; \
+		fi; \
 	done
-	@echo -n "$(COLOR_BLUE)] $(1)/$(2)$(COLOR_RESET)\r"
+	@printf "$(COLOR_BLUE)] $(BOLD)$(1)/$(2) $(COLOR_GREEN)$(3)$(COLOR_RESET)\r"
 endef
-
-##############
-##	COLORS	##
-##############
-
-COLOR_RESET	=	\033[0m
-COLOR_GREEN	=	\033[32m
-COLOR_BLUE	=	\033[34m
-COLOR_RED	=	\033[31m
 
 #############
 ##	RULES  ##
@@ -103,21 +111,23 @@ $(OBJ_DIR):
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
-	@$(eval COMPILED_SRCS=$(shell echo $$(($(COMPILED_SRCS)+1))))
-	@$(call print_progress,$(COMPILED_SRCS),$(TOTAL_SRCS))
+	@$(eval COMPILED_SRCS=$(shell expr $(COMPILED_SRCS) + 1))
+	@$(call print_progress,$(COMPILED_SRCS),$(TOTAL_SRCS), $<)
 
 $(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
-	@echo "\n$(COLOR_GREEN)Compilation complete !$(COLOR_RESET)"
+	@echo "\033[2K$(COLOR_ORANGE)$(BOLD)Compilation complete ! $(COLOR_BLUE)Stackft is Ready !$(COLOR_RESET)"
 
 clean: 
 	@rm -fr  $(OBJ_DIR)
 	@rm -f norme_log
-	@echo "$(COLOR_GREEN)Remove Object complete !$(COLOR_RESET)"
+	@echo "$(COLOR_RED)$(BOLD)Delete stackft objects$(COLOR_RESET)"
+
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(COLOR_GREEN)Remove StackFT complete !$(COLOR_RESET)"
+	@echo "$(COLOR_RED)$(BOLD)Delete Stackft$(COLOR_RESET)"
+
 
 re: fclean all
 
