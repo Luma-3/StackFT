@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:59:26 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/03/28 19:01:35 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:58:55 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	d_clear_stk(t_dstack *stack, void (*del)(void *))
 		del(tmp1->data);
 		free(tmp1);
 		tmp1 = tmp2;
+		tmp2 = tmp2->next;
 	}
 	stack->size = 0;
 	stack->top = NULL;

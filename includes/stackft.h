@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:35:58 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/03/30 17:09:09 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:51:21 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <errno.h>
 
 typedef struct s_sstack
 {
@@ -40,7 +41,7 @@ typedef struct s_dstack
 //////////////////////////////
 
 void		s_clear_stk(t_sstack *stack);
-void		s_init_stk(t_sstack *stack, size_t size);
+int			s_init_stk(t_sstack *stack, size_t size);
 int			s_isempty_stk(t_sstack *stack);
 int			s_isfull_stk(t_sstack *stack);
 size_t		s_len_stk(t_sstack *stack);
