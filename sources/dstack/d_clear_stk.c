@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:59:26 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/04/04 16:58:55 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/04/09 17:44:53 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	d_clear_stk(t_dstack *stack, void (*del)(void *))
 {
-	t_dnode	*tmp1;
-	t_dnode	*tmp2;
+	t_dnode	*current;
+	t_dnode	*next;
 
-	tmp1 = stack->top;
-	tmp2 = stack->top->next;
-	while (tmp1->data != NULL)
+	current = stack->top;
+	while (current != NULL)
 	{
-		del(tmp1->data);
-		free(tmp1);
-		tmp1 = tmp2;
-		tmp2 = tmp2->next;
+		next = current->next;
+		if (current->data != NULL)
+			del(current->data);
+		free(current);
+		current = next;
+		stack->size--;
 	}
-	stack->size = 0;
 	stack->top = NULL;
 }
