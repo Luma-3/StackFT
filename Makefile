@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/24 16:32:28 by jbrousse          #+#    #+#              #
-#    Updated: 2024/04/02 19:30:40 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/04/12 11:42:47 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,20 +80,36 @@ UNDERLINE		=	\033[4m
 ##	PROGRESS  ##
 ################
 
-TOTAL_SRCS		=	$(words $(SRC))
-COMPILED_SRCS	:=	0
+COMPILED_SRCS		:=	1
 
-define print_progress
-	@printf "\033[2K"
-	@printf "$(COLOR_BLUE)Compiling: [$(COLOR_GREEN)"
-	@for i in $(shell seq 1 25); do \
-		if [ $$i -le $$(($(1)*25/$(2))) ]; then \
+TOTAL_SRCS			:=	$(words $(SRC))
+
+
+MAX_PATH_LENGTH 	:=	$(shell find $(SRC_DIR) -name '*.c' | awk '{print length}' | sort -nr | head -n1)
+MAX_NAME_LENGTH 	:=	$(shell find $(SRC_DIR) -name '*.c' -exec basename {} \; | awk '{ print length }' | sort -nr | head -n1)
+
+define progress_bar
+	printf "$(COLOR_BLUE)Compiling: [$(COLOR_GREEN)"; \
+	for i in $$(seq 1 $(4)); do \
+		if [ $$i -le $$(($(1)*$(4)/$(2))) ]; then \
 			printf "#"; \
 		else \
 			printf "."; \
 		fi; \
-	done
-	@printf "$(COLOR_BLUE)] $(BOLD)$(1)/$(2) $(COLOR_GREEN)$(3)$(COLOR_RESET)\r"
+	done; \
+	printf "$(COLOR_BLUE)] $(BOLD)$(1)/$(2) $(COLOR_GREEN)$(3)$(COLOR_RESET)\r"
+endef
+
+define print_progress
+	@$(eval WIDTH := $(shell tput cols))
+	@$(eval LEN := $(shell expr $(WIDTH) - $(MAX_PATH_LENGTH) - 26))
+	
+	@printf "\033[2K"; \
+	if [ $(LEN) -le 10 ]; then \
+		printf "$(COLOR_BLUE)Compiling: $(BOLD)$(1)/$(2)$(COLOR_RESET)$(COLOR_GREEN) $(notdir $(3))$(COLOR_RESET)\r"; \
+	else \
+		$(call progress_bar,$(1),$(2),$(3),$(LEN)); \
+	fi
 endef
 
 #############
@@ -102,13 +118,8 @@ endef
 
 all: $(NAME)
 
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(OBJ_DIR)$(SRC_SSTACK_DIR)
-	@mkdir -p $(OBJ_DIR)$(SRC_DSTACK_DIR)
-
-
-$(OBJ_DIR)%.o : $(SRC_DIR)%.c $(OBJ_DIR)
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
 	@$(eval COMPILED_SRCS=$(shell expr $(COMPILED_SRCS) + 1))
